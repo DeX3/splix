@@ -1,0 +1,83 @@
+<ion-header-bar class="bar-stable">
+<h1 class="title">Splix</h1>
+</ion-header-bar>
+<ion-content scroll="false" ng-view>
+    <div class="canvas-container">
+        <canvas id="canvas">
+        </canvas>
+        <div class="overlay">
+            <div id="person1" class="person">
+            </div>
+            <div id="person2" class="person">
+            </div>
+            <div id="total">
+                <span class="value">
+                    {{total | number : 2}}
+                </span>
+            </div>
+            <div id="input">
+                <span class="value">
+                    {{currentValue}}
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="numpad">
+        <div class="numrow">
+            <div class="key">
+                <span class="button"
+                      ng-click="onKeyPress(7)">7</span>
+            </div>
+            <div class="key">
+                <span class="button"
+                      ng-click="onKeyPress(8)">8</span>
+            </div>
+            <div class="key">
+                <span class="button">9</span>
+            </div>
+        </div>
+        <div class="numrow">
+            <div class="key">
+                <span class="button"
+                      ng-click="onKeyPress(4)">4</span>
+            </div>
+            <div class="key">
+                <span class="button"
+                      ng-click="onKeyPress(5)">5</span>
+            </div>
+            <div class="key">
+                <span class="button"
+                      ng-click="onKeyPress(6)">6</span>
+            </div>
+        </div>
+        <div class="numrow">
+            <div class="key">
+                <span class="button"
+                      ng-click="onKeyPress(1)">1</span>
+            </div>
+            <div class="key">
+                <span class="button"
+                      ng-click="onKeyPress(2)">2</span>
+            </div>
+            <div class="key">
+                <span class="button"
+                      ng-click="onKeyPress(3)">3</span>
+            </div>
+        </div>
+        <div class="numrow">
+            <div class="key">
+                <span class="button"
+                      ng-click="onKeyPress('comma')">.</span>
+            </div>
+            <div class="key">
+                <span class="button"
+                      ng-click="onKeyPress(0)">0</span>
+            </div>
+            <div class="key">
+                <span class="button ion-backspace-outline"
+                      ng-click="onKeyPress('del')")></span>
+            </div>
+        </div>
+
+    </div>
+</ion-content>

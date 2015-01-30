@@ -21,3 +21,61 @@ $ionicons-font-path: "../lib/ionic/fonts" !default;
 // Include all of Ionic
 @import "www/lib/ionic/scss/ionic";
 
+
+div.canvas-container {
+    width: 100%;
+    height: 100%;
+
+    canvas#canvas {
+        width: 100%;
+        height: 100%;
+    }
+
+    div.overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        left: 0;
+        top: 0;
+        div.person {
+            position: absolute;
+            margin: 0;
+            padding: 0;
+        }
+        div#input, div#total {
+            position: absolute;
+            text-align: center;
+            font-size: 2em;
+        }
+    }
+
+}
+
+div.numpad {
+    position: absolute;
+    width: 100%;
+    height: 35%;
+    bottom: 2px;
+    left: 2px;
+
+    div.numrow {
+        height: 23%;
+        margin-top: 1%;
+        width: 100%;
+        white-space: nowrap;
+
+        div.key {
+            width: 32.9%;
+            height: 100%;
+            display: inline-block;
+
+            span.button {
+                width: 100%;
+                height: 100%;
+                font-size: 2em;
+                padding-top: 3%;
+            }
+        }
+    }
+}
