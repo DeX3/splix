@@ -6,19 +6,39 @@
         <canvas id="canvas">
         </canvas>
         <div class="overlay">
-            <div id="person1" class="person">
+            <div class="person"
+                 ng-repeat="person in persons"
+                 id="person-{{person.id}}"
+                 data-drop="true"
+                 jqyoui-droppable="{ onOver: 'onOver',
+                                     onDrop: 'onDrop',
+                                     onOut: 'onOut' }"
+                 ng-model="person">
+                 <span class="name">
+                     {{person.name}}
+                 </span>
             </div>
-            <div id="person2" class="person">
-            </div>
-            <div id="total">
+            <div id="total"
+                 data-drop="true"
+                 jqyoui-droppable="{ onOver: 'onOver',
+                                     onDrop: 'onDrop',
+                                     onOut: 'onOut' }">
                 <span class="value">
                     {{total | number : 2}}
                 </span>
             </div>
-            <div id="input">
+            <div id="input"
+                 jqyoui-draggable="{animate: true}"
+                 data-jqyoui-options="{ revert: 'invalid' }"
+                 data-drag="true"
+                 ng-model="test">
                 <span class="value">
                     {{currentValue}}
                 </span>
+            </div>
+            <div id="add-person"
+                 class="button ion-person-add"
+                 ng-click="addPerson()">
             </div>
         </div>
     </div>
@@ -33,7 +53,8 @@
                       ng-click="onKeyPress(8)">8</span>
             </div>
             <div class="key">
-                <span class="button">9</span>
+                <span class="button"
+                      ng-click="onKeyPress(9)">9</span>
             </div>
         </div>
         <div class="numrow">

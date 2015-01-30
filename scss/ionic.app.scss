@@ -29,6 +29,7 @@ div.canvas-container {
     canvas#canvas {
         width: 100%;
         height: 100%;
+        background-color: #eee8d5;
     }
 
     div.overlay {
@@ -42,10 +43,59 @@ div.canvas-container {
             position: absolute;
             margin: 0;
             padding: 0;
+            border: 1px solid #777;
+            transition: top 1s ease-in-out, left 1s ease-in-out;
+            text-align: center;
+            background-color: #fff;
+
+            span.name {
+                display: block;
+                margin-top: 3%;
+            }
         }
+
+        div.person#person-0 {
+            background-color: #ae3;
+        }
+
+        div.person#person-1 {
+            background-color: #3ae;
+        }
+
+        div.person#person-2 {
+            background-color: #ea3;
+        }
+
+        div.person#person-3 {
+            background-color: #e3a;
+        }
+
+        div.person#person-4 {
+            background-color: #3ea;
+        }
+
+        div.person#person-5 {
+            background-color: #a3e;
+        }
+
+
         div#input, div#total {
             position: absolute;
             text-align: center;
+            background-color: #fdf6e3;
+            font-size: 1.5em;
+            border: 2px solid #000;
+        }
+
+        div#input {
+            background-color: #fff;
+            font-size: 2em;
+        }
+
+        div#add-person {
+            position: absolute;
+            right: 1px;
+            top: 57%;
             font-size: 2em;
         }
     }

@@ -7020,7 +7020,8 @@ div.canvas-container {
   height: 100%; }
   div.canvas-container canvas#canvas {
     width: 100%;
-    height: 100%; }
+    height: 100%;
+    background-color: #eee8d5; }
   div.canvas-container div.overlay {
     position: absolute;
     width: 100%;
@@ -7031,10 +7032,39 @@ div.canvas-container {
     div.canvas-container div.overlay div.person {
       position: absolute;
       margin: 0;
-      padding: 0; }
+      padding: 0;
+      border: 1px solid #777;
+      transition: top 1s ease-in-out, left 1s ease-in-out;
+      text-align: center;
+      background-color: #fff; }
+      div.canvas-container div.overlay div.person span.name {
+        display: block;
+        margin-top: 3%; }
+    div.canvas-container div.overlay div.person#person-0 {
+      background-color: #ae3; }
+    div.canvas-container div.overlay div.person#person-1 {
+      background-color: #3ae; }
+    div.canvas-container div.overlay div.person#person-2 {
+      background-color: #ea3; }
+    div.canvas-container div.overlay div.person#person-3 {
+      background-color: #e3a; }
+    div.canvas-container div.overlay div.person#person-4 {
+      background-color: #3ea; }
+    div.canvas-container div.overlay div.person#person-5 {
+      background-color: #a3e; }
     div.canvas-container div.overlay div#input, div.canvas-container div.overlay div#total {
       position: absolute;
       text-align: center;
+      background-color: #fdf6e3;
+      font-size: 1.5em;
+      border: 2px solid #000; }
+    div.canvas-container div.overlay div#input {
+      background-color: #fff;
+      font-size: 2em; }
+    div.canvas-container div.overlay div#add-person {
+      position: absolute;
+      right: 1px;
+      top: 57%;
       font-size: 2em; }
 
 div.numpad {
