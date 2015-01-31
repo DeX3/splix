@@ -7033,13 +7033,16 @@ div.canvas-container {
       position: absolute;
       margin: 0;
       padding: 0;
-      border: 1px solid #777;
+      border: 1px dashed #777;
       transition: top 1s ease-in-out, left 1s ease-in-out;
       text-align: center;
       background-color: #fff; }
-      div.canvas-container div.overlay div.person span.name {
-        display: block;
-        margin-top: 3%; }
+      div.canvas-container div.overlay div.person div.name {
+        margin-top: 10%; }
+      div.canvas-container div.overlay div.person div.value {
+        font-size: 1.5em; }
+    div.canvas-container div.overlay div.person.selected {
+      border: 2px solid #000; }
     div.canvas-container div.overlay div.person#person-0 {
       background-color: #ae3; }
     div.canvas-container div.overlay div.person#person-1 {
@@ -7061,20 +7064,17 @@ div.canvas-container {
     div.canvas-container div.overlay div#input {
       background-color: #fff;
       font-size: 2em; }
-    div.canvas-container div.overlay div#add-person {
-      position: absolute;
-      right: 1px;
-      top: 57%;
-      font-size: 2em; }
+    div.canvas-container div.overlay div#input.ui-draggable-dragging {
+      opacity: 0.5; }
 
 div.numpad {
   position: absolute;
   width: 100%;
-  height: 35%;
+  height: 45%;
   bottom: 2px;
   left: 2px; }
   div.numpad div.numrow {
-    height: 23%;
+    height: 19%;
     margin-top: 1%;
     width: 100%;
     white-space: nowrap; }
@@ -7087,3 +7087,5 @@ div.numpad {
         height: 100%;
         font-size: 2em;
         padding-top: 3%; }
+  div.numpad div#add-person {
+    font-size: 1.5em; }

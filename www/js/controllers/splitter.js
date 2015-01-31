@@ -18,6 +18,7 @@ app.controller( "SplitterCtrl", function( $scope,
     var radius = w/2.5;
 
     $scope.persons = [];
+    $scope.expenses = [];
 
     $(window).resize( reorderPersons );
     $timeout( reorderPersons );
@@ -32,7 +33,7 @@ app.controller( "SplitterCtrl", function( $scope,
     $scope.total = 0;
     $scope.onKeyPress = function( key ) {
 
-        var value = parseInt( $scope.currentValue, 10 );
+        var value = parseFloat( $scope.currentValue, 10 );
         if( value === 0 ) {
             $scope.currentValue = "";
         }
@@ -50,7 +51,7 @@ app.controller( "SplitterCtrl", function( $scope,
             );
         }
 
-        value = parseInt( $scope.currentValue, 10 );
+        value = parseFloat( $scope.currentValue, 10 );
         if( value === 0 || $scope.currentValue.length === 0 ) {
             $scope.currentValue = "0.00";
         }
@@ -73,8 +74,6 @@ app.controller( "SplitterCtrl", function( $scope,
         var id = evt.target.id;
         
         if( id === "total" ) {
-            console.log( "over total" );
-
             ctx.beginPath();
             
             var pct = 0;
@@ -90,12 +89,19 @@ app.controller( "SplitterCtrl", function( $scope,
                 ctx.stroke();
             } );
 
+            $scope.allSelected = !$scope.allSelected;
+
+            $scope.$digest();
+
             
         } else {
             id = parseInt( id.match( /person-(\d+)/ )[1], 10 );
 
+            $scope.allSelected = false;
+
             var person = getPersonById( id );
-            console.log( person );
+            person.selected = !person.selected;
+            $scope.$digest();
         }
 
     };
@@ -104,17 +110,47 @@ app.controller( "SplitterCtrl", function( $scope,
         ctx.clearRect( 0, 0, canvas.width(), canvas.height() );
     };
 
-    $scope.onDrop = function() {
+    $scope.selectedPersons = {};
 
-        reorderPersons();
+    $scope.onStop = function( evt, ui ) {
+        
+        var id = evt.target.id;
 
-        console.log( arguments );
+        var expense = {
+            amount: parseFloat( $scope.currentValue, 10 ),
+            persons: []
+        };
+
+        var selectedPersons = [];
+        $scope.persons.forEach( function( person ) {
+            if( person.selected || $scope.allSelected ) {
+                selectedPersons.push( person );
+            }
+        } );
+        $scope.allSelected = false;
+
+        if( selectedPersons.length > 0 ) {
+
+            var share = expense.amount / selectedPersons.length;
+            selectedPersons.forEach( function( person ) {
+                person.total += share;
+                expense.persons.push( person );
+                person.selected = false;
+            } );
+
+            $scope.total += expense.amount;
+            $scope.currentValue = "0.00";
+            $( "div#input" ).hide( "size" );
+            $timeout( reorderPersons, 500 );
+        } else {
+            reorderPersons();
+        }
+
+        ctx.clearRect( 0, 0, canvas.width(), canvas.height() );
     };
 
     function getPersonById( id ) {
 
-        console.log( "looking for", id );
-        
         var found = null;
         $scope.persons.some( function( person ) {
             if( person.id == id ) {
@@ -131,7 +167,8 @@ app.controller( "SplitterCtrl", function( $scope,
         
         var person = {
             id: currentId++,
-            name: data.name
+            name: data.name,
+            total: 0.00
         };
 
         $scope.persons.push( person );
@@ -148,7 +185,7 @@ app.controller( "SplitterCtrl", function( $scope,
         
         centerX = w/2;
         centerY = (h - $("div.numpad").height())/2.13;
-        radius = w/2.5;
+        radius = w/2.75;
 
         /*
         ctx.beginPath();
@@ -156,7 +193,7 @@ app.controller( "SplitterCtrl", function( $scope,
         ctx.stroke();
         */
 
-        centerOn( $("div#total"), w/3, { x: centerX, y: centerY } );
+        centerOn( $("div#total"), w/4, { x: centerX, y: centerY } );
 
         $( "div#total span" ).css( {
             "line-height": $( "div#total" ).height() + "px"
@@ -165,6 +202,7 @@ app.controller( "SplitterCtrl", function( $scope,
         var inputElem = $( "div#input" );
 
         centerOn( inputElem, w/3, getPointOnCircle(0.25) );
+        inputElem.show();
         //drawCircleOnCircle( 0.25, w/7.5, $("div#input") );
         $( "div#input span" ).css( {
             "line-height": $( "div#input" ).height() + "px"

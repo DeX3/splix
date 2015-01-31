@@ -13,10 +13,13 @@
                  jqyoui-droppable="{ onOver: 'onOver',
                                      onDrop: 'onDrop',
                                      onOut: 'onOut' }"
-                 ng-model="person">
-                 <span class="name">
+                 ng-class="{ selected: person.selected || allSelected }">
+                 <div class="name">
                      {{person.name}}
-                 </span>
+                 </div>
+                 <div class="value">
+                     {{person.total | number : 2}}
+                 </div>
             </div>
             <div id="total"
                  data-drop="true"
@@ -28,21 +31,20 @@
                 </span>
             </div>
             <div id="input"
-                 jqyoui-draggable="{animate: true}"
-                 data-jqyoui-options="{ revert: 'invalid' }"
-                 data-drag="true"
-                 ng-model="test">
+                 jqyoui-draggable="{animate: true,
+                                    onStop: 'onStop' }"
+                 data-drag="true">
                 <span class="value">
                     {{currentValue}}
                 </span>
             </div>
-            <div id="add-person"
-                 class="button ion-person-add"
-                 ng-click="addPerson()">
-            </div>
         </div>
     </div>
     <div class="numpad">
+        <div id="add-person"
+             class="button ion-person-add"
+             ng-click="addPerson()">
+        </div>
         <div class="numrow">
             <div class="key">
                 <span class="button"
